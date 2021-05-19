@@ -1,25 +1,25 @@
 {
   "files": {
     "main.css": "/namesApp/static/css/main.fa33afca.chunk.css",
-    "main.js": "/namesApp/static/js/main.d4407aab.chunk.js",
-    "main.js.map": "/namesApp/static/js/main.d4407aab.chunk.js.map",
+    "main.js": "/namesApp/static/js/main.6c139d61.chunk.js",
+    "main.js.map": "/namesApp/static/js/main.6c139d61.chunk.js.map",
     "runtime-main.js": "/namesApp/static/js/runtime-main.92e10904.js",
     "runtime-main.js.map": "/namesApp/static/js/runtime-main.92e10904.js.map",
     "static/css/2.4c97ca4f.chunk.css": "/namesApp/static/css/2.4c97ca4f.chunk.css",
-    "static/js/2.cb453c30.chunk.js": "/namesApp/static/js/2.cb453c30.chunk.js",
-    "static/js/2.cb453c30.chunk.js.map": "/namesApp/static/js/2.cb453c30.chunk.js.map",
+    "static/js/2.0e47de29.chunk.js": "/namesApp/static/js/2.0e47de29.chunk.js",
+    "static/js/2.0e47de29.chunk.js.map": "/namesApp/static/js/2.0e47de29.chunk.js.map",
     "index.html": "/namesApp/index.html",
     "static/css/2.4c97ca4f.chunk.css.map": "/namesApp/static/css/2.4c97ca4f.chunk.css.map",
     "static/css/main.fa33afca.chunk.css.map": "/namesApp/static/css/main.fa33afca.chunk.css.map",
-    "static/js/2.cb453c30.chunk.js.LICENSE.txt": "/namesApp/static/js/2.cb453c30.chunk.js.LICENSE.txt",
+    "static/js/2.0e47de29.chunk.js.LICENSE.txt": "/namesApp/static/js/2.0e47de29.chunk.js.LICENSE.txt",
     "static/media/image.499e2ad4.png": "/namesApp/static/media/image.499e2ad4.png",
     "static/media/largeImage.8c08b9c9.png": "/namesApp/static/media/largeImage.8c08b9c9.png"
   },
   "entrypoints": [
     "static/js/runtime-main.92e10904.js",
     "static/css/2.4c97ca4f.chunk.css",
-    "static/js/2.cb453c30.chunk.js",
+    "static/js/2.0e47de29.chunk.js",
     "static/css/main.fa33afca.chunk.css",
-    "static/js/main.d4407aab.chunk.js"
+    "static/js/main.6c139d61.chunk.js"
   ]
 }
