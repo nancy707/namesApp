@@ -319,7 +319,10 @@ function MainPage() {
         />
       </div>
 
-      <div class="w3-cell-row" style={{ marginTop: "30px" }}>
+      <div
+        class="w3-cell-row"
+        style={{ marginTop: "30px", marginBottom: "30px" }}
+      >
         <GDPVSSyllabicCount
           stateValue={stateSelected.value}
           stateLabel={stateSelected.label}

@@ -51,7 +51,8 @@ function GetData(rows, stateName, yearInterval) {
   const columns = ["Year", "State", "District", "AvgSyllabicCount", "GDP"];
   const df = new DataFrame(rows, columns);
   // console.log("stateName: " + stateName);
-  console.log(df);
+  // console.log(yearInterval);
+  yearInterval = String(yearInterval);
   let dataObjects = [];
   if (stateName === "All States") {
     let dataDict = df.filter({ Year: yearInterval }).toArray();
@@ -71,6 +72,7 @@ function GetData(rows, stateName, yearInterval) {
       GDP: parseInt(row[4]),
     }));
   }
+
   return dataObjects;
 }
 
@@ -85,7 +87,7 @@ function ScatterPlotElement(props) {
       height={300}
       margin={{
         top: 3,
-        right: 3,
+        right: 20,
         bottom: 20,
         left: 3,
       }}
@@ -99,7 +101,12 @@ function ScatterPlotElement(props) {
           fontSize={14}
         />
       </XAxis>
-      <YAxis type="number" dataKey="AvgSyllabicCount" tick={{ fontSize: 13 }}>
+      <YAxis
+        type="number"
+        dataKey="AvgSyllabicCount"
+        domain={[1.5, 3.8]}
+        tick={{ fontSize: 13 }}
+      >
         <Label
           value="Syllabic Count"
           angle={-90}
@@ -125,8 +132,8 @@ function ScatterPlotElement(props) {
 function GDPVSSyllabicCount(props) {
   // console.log(props.stateValue);
   const [stateSelected, setStateSelected] = useState({
-    value: props.stateValue + 1,
-    label: props.stateLabel,
+    value: 1,
+    label: "Andhra Pradesh",
   });
   const changeStateSelectOptionHandler = (event) => {
     setStateSelected(event);
@@ -198,13 +205,22 @@ function GDPVSSyllabicCount(props) {
         {stateSelectElement} in {yearSelectElement}?
       </p>
       <hr />
-
-      <div className="cardText"> YEAR: {yearSelected.label}</div>
-      <ScatterPlotElement
-        csvData={rows}
-        state={stateSelected.label}
-        yearInterval={yearSelected.label}
-      />
+      <Row>
+        <Col></Col>
+        <Col>
+          <div className="graphCard" style={{ alignContent: "center" }}>
+            <br />
+            <div className="cardText">Gross domestic product over time</div>
+            <div className="cardText"> YEAR: {yearSelected.label}</div>
+            <ScatterPlotElement
+              csvData={rows}
+              state={stateSelected.label}
+              yearInterval={yearSelected.label}
+            />
+          </div>
+        </Col>
+        <Col></Col>
+      </Row>
     </Container>
   );
 }

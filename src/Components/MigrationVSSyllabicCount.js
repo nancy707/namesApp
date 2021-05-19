@@ -91,21 +91,26 @@ function ScatterPlotElement(props) {
       }}
     >
       <CartesianGrid strokeDasharray="3 3" />
-      <XAxis type="number" dataKey="In_migrants" tick={{ fontSize: 14 }}>
+      <XAxis type="number" dataKey="In_migrants" tick={{ fontSize: 13 }}>
         <Label
           value="In-migrants"
           position="insideBottomCenter"
           dy={18}
-          fontSize={15}
+          fontSize={13}
         />
       </XAxis>
-      <YAxis type="number" dataKey="AvgSyllabicCount" tick={{ fontSize: 14 }}>
+      <YAxis
+        type="number"
+        dataKey="AvgSyllabicCount"
+        domain={[1.5, 3.8]}
+        tick={{ fontSize: 13 }}
+      >
         <Label
           value="Syllabic Count"
           angle={-90}
           position="insideLeftCenter"
           dx={-15}
-          fontSize={15}
+          fontSize={13}
         />
       </YAxis>
       {/* <Tooltip cursor={{ strokeDasharray: "3 3" }} /> */}
