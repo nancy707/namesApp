@@ -1,17 +1,26 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import ReactDOM from "react-dom";
+import "./index.css";
+import App from "./App";
+
+import "bootstrap/dist/css/bootstrap.min.css";
+
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import Project from "./Components/ProjectDetails";
+import MigrationVSSyllabicCount from "./Components/MigrationVSSyllabicCount";
+import GDP from "./Components/GDP";
+import SyllabicCount from "./Components/SyllabicCount";
+import MainPage from "./Components/MainPage";
 
 ReactDOM.render(
-  <React.StrictMode>
+  <Router>
     <App />
-  </React.StrictMode>,
-  document.getElementById('root')
+    {/* <Switch>
+      <Route path="/project_details" component={Project} />
+      <Route path="/syllabic_count" component={MainPage} />
+      <Route path="/migration" component={MigrationVSSyllabicCount} />
+      <Route path="/gdp" component={GDP} />
+    </Switch> */}
+  </Router>,
+  document.getElementById("root")
 );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
