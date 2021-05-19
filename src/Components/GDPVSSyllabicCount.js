@@ -13,15 +13,22 @@ import {
 import Papa from "papaparse";
 import DataFrame from "dataframe-js";
 
+function GetYearObjects() {
+  let years = [];
+  const start = 1993;
+  for (let i = 0; i < 8; i++) {
+    years.push(start + i);
+  }
+  const yearObjects = years.map((str, index) => ({
+    value: index + 1,
+    label: str,
+  }));
+  return yearObjects;
+}
+
 function GetStateObjects() {
   let states = [
-    "Andaman And Nicobar Islands",
     "Andhra Pradesh",
-    "Arunachal Pradesh",
-    "Chandigarh",
-    "Dadra And Nagar Haveli",
-    "Daman And Diu",
-    "Goa",
     "Haryana",
     "Himachal Pradesh",
     // "Jammu And Kashmir",
@@ -29,8 +36,6 @@ function GetStateObjects() {
     "Manipur",
     "Meghalaya",
     "Mizoram",
-    "Nagaland",
-    "Puducherry",
     "Uttar Pradesh",
     "Uttarakhand",
   ];
@@ -43,22 +48,17 @@ function GetStateObjects() {
 }
 
 function GetData(rows, stateName, yearInterval) {
-  const columns = [
-    "Year",
-    "State",
-    "District",
-    "AvgSyllabicCount",
-    "In-migrants",
-  ];
+  const columns = ["Year", "State", "District", "AvgSyllabicCount", "GDP"];
   const df = new DataFrame(rows, columns);
   // console.log("stateName: " + stateName);
+  console.log(df);
   let dataObjects = [];
   if (stateName === "All States") {
     let dataDict = df.filter({ Year: yearInterval }).toArray();
     dataObjects = dataDict.map((row, index) => ({
       // Year: row[0],
       AvgSyllabicCount: row[3],
-      In_migrants: parseInt(row[4]),
+      GDP: parseInt(row[4]),
     }));
   } else {
     // districts = Districts(stateName);
@@ -68,7 +68,7 @@ function GetData(rows, stateName, yearInterval) {
     dataObjects = dataDict.map((row, index) => ({
       District: row[2],
       AvgSyllabicCount: row[3],
-      In_migrants: parseInt(row[4]),
+      GDP: parseInt(row[4]),
     }));
   }
   return dataObjects;
@@ -81,8 +81,8 @@ function ScatterPlotElement(props) {
   // console.log(data);
   return (
     <ScatterChart
-      width={300}
-      height={200}
+      width={500}
+      height={300}
       margin={{
         top: 3,
         right: 3,
@@ -91,21 +91,21 @@ function ScatterPlotElement(props) {
       }}
     >
       <CartesianGrid strokeDasharray="3 3" />
-      <XAxis type="number" dataKey="In_migrants" tick={{ fontSize: 14 }}>
+      <XAxis type="number" dataKey="GDP" tick={{ fontSize: 13 }}>
         <Label
-          value="In-migrants"
+          value="GDP"
           position="insideBottomCenter"
           dy={18}
-          fontSize={15}
+          fontSize={14}
         />
       </XAxis>
-      <YAxis type="number" dataKey="AvgSyllabicCount" tick={{ fontSize: 14 }}>
+      <YAxis type="number" dataKey="AvgSyllabicCount" tick={{ fontSize: 13 }}>
         <Label
           value="Syllabic Count"
           angle={-90}
           position="insideLeftCenter"
           dx={-15}
-          fontSize={15}
+          fontSize={14}
         />
       </YAxis>
       {/* <Tooltip cursor={{ strokeDasharray: "3 3" }} /> */}
@@ -122,7 +122,7 @@ function ScatterPlotElement(props) {
     </ScatterChart>
   );
 }
-function MigrationVSSyllabicCount(props) {
+function GDPVSSyllabicCount(props) {
   // console.log(props.stateValue);
   const [stateSelected, setStateSelected] = useState({
     value: props.stateValue + 1,
@@ -136,8 +136,14 @@ function MigrationVSSyllabicCount(props) {
   React.useEffect(() => {
     async function getData() {
       const response = await fetch(
-        "https://nancy707.github.io/namesApp/data/SyllabicCount_vs_Migration.csv"
+        "https://nancy707.github.io/namesApp/data/SyllabicCount_vs_GDP.csv"
       );
+      // const csvFilePath1 =
+      // "http://localhost:3000/data/SyllabicCount_vs_GDP.csv";
+      // let temp = await DataFrame.fromCSV(csvFilePath1);
+      // setRows(temp.toCollection());
+      // console.log(rows);
+      // const response = await fetch("/data/SyllabicCount_vs_GDP.csv");
       const reader = response.body.getReader();
       const result = await reader.read(); // raw array
       const decoder = new TextDecoder("utf-8");
@@ -148,6 +154,14 @@ function MigrationVSSyllabicCount(props) {
     }
     getData();
   }, []);
+
+  const [yearSelected, setYearSelected] = useState({
+    value: 8,
+    label: 2000,
+  });
+  const changeYearSelectOptionHandler = (event) => {
+    setYearSelected(event);
+  };
 
   const stateSelectElement = (
     <Select
@@ -163,72 +177,35 @@ function MigrationVSSyllabicCount(props) {
     />
   );
 
+  const yearSelectElement = (
+    <Select
+      className="select-search mt-1 col-md-2 col-offset-1"
+      classNamePrefix="select"
+      placeholder="2000"
+      onChange={changeYearSelectOptionHandler}
+      selectedValue={yearSelected}
+      // isClearable="true"
+      isSearchable="true"
+      name="year"
+      options={GetYearObjects()}
+    />
+  );
+
   return (
     <Container>
       <p className="textStyles">
-        How syllabic complexity changes over immigration rate for
-        {stateSelectElement} ?
+        How syllabic complexity changes over GDP growth for
+        {stateSelectElement} in {yearSelectElement}?
       </p>
       <hr />
-      <Row>
-        <Col>
-          <div className="cardText"> YEAR: 1972 - 1976</div>
-          <ScatterPlotElement
-            csvData={rows}
-            state={stateSelected.label}
-            yearInterval="1972 - 1976"
-          />
-        </Col>
-        <Col>
-          <div className="cardText"> YEAR: 1977 - 1981</div>
 
-          <ScatterPlotElement
-            csvData={rows}
-            state={stateSelected.label}
-            yearInterval="1977 - 1981"
-          />
-        </Col>
-        <Col>
-          <div className="cardText"> YEAR: 1982 - 1986</div>
-
-          <ScatterPlotElement
-            csvData={rows}
-            state={stateSelected.label}
-            yearInterval="1982 - 1986"
-          />
-        </Col>
-      </Row>
-      <br />
-      <Row>
-        <Col>
-          <div className="cardText"> YEAR: 1987 - 1991</div>
-
-          <ScatterPlotElement
-            csvData={rows}
-            state={stateSelected.label}
-            yearInterval="1987 - 1991"
-          />
-        </Col>
-        <Col>
-          <div className="cardText"> YEAR: 1992 - 1996</div>
-
-          <ScatterPlotElement
-            csvData={rows}
-            state={stateSelected.label}
-            yearInterval="1992 - 1996"
-          />
-        </Col>
-        <Col>
-          <div className="cardText"> YEAR: 1997 - 2000</div>
-
-          <ScatterPlotElement
-            csvData={rows}
-            state={stateSelected.label}
-            yearInterval="1997 - 2000"
-          />
-        </Col>
-      </Row>
+      <div className="cardText"> YEAR: {yearSelected.label}</div>
+      <ScatterPlotElement
+        csvData={rows}
+        state={stateSelected.label}
+        yearInterval={yearSelected.label}
+      />
     </Container>
   );
 }
-export default MigrationVSSyllabicCount;
+export default GDPVSSyllabicCount;

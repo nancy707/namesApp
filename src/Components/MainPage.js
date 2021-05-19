@@ -15,7 +15,7 @@ import { GlassMagnifier, SideBySideMagnifier } from "react-image-magnifiers";
 import image from "./image.png";
 import largeImage from "./largeImage.png";
 import MigrationVSSyllabicCount from "./MigrationVSSyllabicCount";
-
+import GDPVSSyllabicCount from "./GDPVSSyllabicCount";
 // const csvFilePath = "http://localhost:3000/data/AllYearsSyllabicCount.csv";
 
 // const csvFilePath = "/data/YearwiseSyllabicCount3.csv";
@@ -314,6 +314,13 @@ function MainPage() {
 
       <div class="w3-cell-row" style={{ marginTop: "30px" }}>
         <MigrationVSSyllabicCount
+          stateValue={stateSelected.value}
+          stateLabel={stateSelected.label}
+        />
+      </div>
+
+      <div class="w3-cell-row" style={{ marginTop: "30px" }}>
+        <GDPVSSyllabicCount
           stateValue={stateSelected.value}
           stateLabel={stateSelected.label}
         />
