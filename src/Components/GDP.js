@@ -16,7 +16,6 @@ import DataFrame from "dataframe-js";
 function GetGDPData(rows, stateName, districtName) {
   const columns = ["Year", "State", "District", "GDP"];
   const df = new DataFrame(rows, columns);
-  console.log(rows);
   // console.log("stateName: " + stateName);
   // console.log("districtName: " + districtName);
   let districts = [],
@@ -26,7 +25,6 @@ function GetGDPData(rows, stateName, districtName) {
   } else {
     districts.push(districtName);
   }
-  console.log("districtName: " + districts);
   for (let i = 0; i < districts.length; i++) {
     let dataDict = df
       .filter({ State: String(stateName), District: String(districts[i]) })
@@ -36,7 +34,6 @@ function GetGDPData(rows, stateName, districtName) {
       Year: row[0],
       GDP: parseInt(row[3]),
     }));
-    console.log(districtObjects);
     dataObjects.push({ District: districts[i], Data: districtObjects });
   }
   return dataObjects;

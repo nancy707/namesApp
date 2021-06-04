@@ -4,8 +4,6 @@ import Select from "react-select";
 import { Container, Col, Row } from "react-bootstrap";
 import Papa from "papaparse";
 import DataFrame from "dataframe-js";
-// import { GlassMagnifier, SideBySideMagnifier } from "react-image-magnifiers";
-
 import "./components.css";
 import Districts from "./Districts";
 import SampleNames from "./SampleNames";
@@ -14,28 +12,8 @@ import SyllabicCount from "./SyllabicCount";
 import GDP from "./GDP";
 import MigrationVSSyllabicCount from "./MigrationVSSyllabicCount";
 import GDPVSSyllabicCount from "./GDPVSSyllabicCount";
-
 import SVGElement from "./SVGElement";
-// import { SVGMap } from "react-svg-map";
 import "react-svg-map/lib/index.css";
-
-// const csvFilePath = "http://localhost:3000/data/AllYearsSyllabicCount.csv";
-
-// const csvFilePath = "/data/YearwiseSyllabicCount3.csv";
-// const csvFilePath =
-// "https://github.com/nancy707/files/blob/main/YearwiseSyllabicCount3.csv";
-// DataFrame.fromCSV(csvFilePath).then((df) => df.show());
-// let myDF;
-// DataFrame.fromCSV(csvFilePath1).then((df) => (myDF = df));
-// Papa.parse(csvFilePath, {
-//   header: true,
-//   delimiter: ",",
-//   linebreak: "\n",
-//   complete: function (results) {
-//     // callBack(results.data);
-//     console.log("Data: " + results.data.length, results);
-//   },
-// });
 
 function GetYearObjects() {
   let years = [];
@@ -61,7 +39,6 @@ function GetStateObjects() {
     "Goa",
     "Haryana",
     "Himachal Pradesh",
-    // "Jammu And Kashmir",
     "Madhya Pradesh",
     "Manipur",
     "Meghalaya",
@@ -85,32 +62,9 @@ function GetDistrictObjects(stateName) {
     value: index,
     label: str,
   }));
-  for (let i = 1; i < districtObjects.length; i++) {
-    console.log(
-      'map["' +
-        districtObjects[i].label +
-        '"] = { value: ' +
-        districtObjects[i].value +
-        ', label: "' +
-        districtObjects[i].label +
-        '"}'
-    );
-    // console.log(districtObjects[i]);
-  }
-  // console.log(districtObjects);
   return districtObjects;
 }
 
-function getStateImage(stateName) {
-  stateName = stateName.replaceAll(" ", "_");
-  console.log("./images/" + stateName + ".jpg");
-  return require("./images/" + stateName + ".jpg");
-  // "https://nancy707.github.io/namesApp/data/images2/" + stateName + ".jpg"
-}
-function getStateLargeImage(stateName) {
-  stateName = stateName.replaceAll(" ", "_");
-  return require("./images/" + stateName + ".jpg");
-}
 function MainPage() {
   const [show, setShowVariable] = useState(false);
   const [stateSelected, setStateSelected] = useState({
@@ -153,8 +107,6 @@ function MainPage() {
       const results = Papa.parse(csv, { header: true }); // object with { data, errors, meta }
       const rows = results.data; // array of objects
       setSyllabicRows(rows);
-      // console.log("Syllabic rows: ");
-      // console.log(syllabicRows);
     }
     getData();
   }, []);
@@ -198,7 +150,6 @@ function MainPage() {
 
   const [sampleNameRows1, setSampleNameRows1] = React.useState([]);
   React.useEffect(() => {
-    // setSampleNameRows1(DataFrame.fromCSV(csvFilePath1))
     async function getData() {
       const csvFilePath1 =
         "https://nancy707.github.io/namesApp/data/SampleNames1.csv";
@@ -370,72 +321,6 @@ function MainPage() {
         />
       </div>
     </Container>
-
-    // <Container className="upperContainer">
-    //   <p>
-    //     How data changes over time for state {stateSelectElement} and for
-    //     district {districtSelectElement} ?
-    //   </p>
-
-    //   <Row>
-    //     <Col>
-    //       <div className="graphCard">
-    //         <SyllabicCount
-    //           csvData={syllabicRows}
-    //           state={stateSelected.label}
-    //           district={districtSelected.label}
-    //         />
-    //       </div>
-    //       {/* {show ? (
-    //         <LineChartElementForSyllabicCount
-    //           csvData={syllabicRows}
-    //           state={stateSelected.label}
-    //           district={districtSelected.label}
-    //         />
-    //       ) : (
-    //         <div></div>
-    //       )} */}
-    //     </Col>
-    //     <Col>
-    //       <div className="graphCard">
-    //         <Migration
-    //           csvData={migrationRows}
-    //           state={stateSelected.label}
-    //           district={districtSelected.label}
-    //         />
-    //       </div>
-    //       {/* {show ? (
-    //         <LineChartElementForMigration
-    //           csvData={migrationRows}
-    //           state={stateSelected.label}
-    //           district={districtSelected.label}
-    //         />
-    //       ) : (
-    //         <div></div>
-    //       )} */}
-    //     </Col>
-    //   </Row>
-    //   <Row>
-    //     <Col>
-    //       <div className="graphCard">
-    //         <h5>
-    //           Sample names in <br /> {yearSelectElement}
-    //         </h5>
-    //         {/* <ul class="w3-ul w3-card-2" style={{ width: "30%" }}> */}
-    //         <ul class="w3-ul w3-center" style={{ width: "30%" }}>
-    //           <SampleNames
-    //             csvData1={sampleNameRows1}
-    //             csvData2={sampleNameRows2}
-    //             state={stateSelected.label}
-    //             district={districtSelected.label}
-    //             year={yearSelected.label}
-    //           />
-    //         </ul>
-    //       </div>
-    //     </Col>
-    //     <Col></Col>
-    //   </Row>
-    // </Container>
   );
 }
 export default MainPage;
