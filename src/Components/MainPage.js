@@ -4,7 +4,7 @@ import Select from "react-select";
 import { Container, Col, Row } from "react-bootstrap";
 import Papa from "papaparse";
 import DataFrame from "dataframe-js";
-import { GlassMagnifier, SideBySideMagnifier } from "react-image-magnifiers";
+// import { GlassMagnifier, SideBySideMagnifier } from "react-image-magnifiers";
 
 import "./components.css";
 import Districts from "./Districts";
@@ -16,10 +16,8 @@ import MigrationVSSyllabicCount from "./MigrationVSSyllabicCount";
 import GDPVSSyllabicCount from "./GDPVSSyllabicCount";
 
 import SVGElement from "./SVGElement";
-import { SVGMap } from "react-svg-map";
+// import { SVGMap } from "react-svg-map";
 import "react-svg-map/lib/index.css";
-import image from "./image.png";
-import largeImage from "./largeImage.png";
 
 // const csvFilePath = "http://localhost:3000/data/AllYearsSyllabicCount.csv";
 
