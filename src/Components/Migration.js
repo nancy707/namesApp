@@ -32,9 +32,9 @@ function GetMigrationData(rows, stateName, districtName) {
   }
   for (let i = 0; i < districts.length; i++) {
     let dataDict = df
-      .filter({ State: stateName, District: districts[i] })
+      .filter({ State: String(stateName), District: String(districts[i]) })
       .toArray();
-    // console.log(dataDict);
+    console.log(dataDict);
     if (dataDict.length === 2) {
       dataDict.unshift(["1987 - 1991", stateName, districtName, ""]);
       dataDict.unshift(["1982 - 1986", stateName, districtName, ""]);

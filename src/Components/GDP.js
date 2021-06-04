@@ -1,10 +1,6 @@
 import React, { useState } from "react";
 import "./components.css";
 import Districts from "./Districts";
-import SampleNames from "./SampleNames";
-import Axios from "axios";
-import Select from "react-select";
-import { Container, Col, Row } from "react-bootstrap";
 import {
   LineChart,
   Line,
@@ -15,13 +11,13 @@ import {
   Legend,
   Label,
 } from "recharts";
-import Papa from "papaparse";
 import DataFrame from "dataframe-js";
 
 function GetGDPData(rows, stateName, districtName) {
   const columns = ["Year", "State", "District", "GDP"];
   const df = new DataFrame(rows, columns);
-  // console.log(rows);
+  console.log(rows);
+  // console.log("stateName: " + stateName);
   // console.log("districtName: " + districtName);
   let districts = [],
     dataObjects = [];
@@ -30,16 +26,17 @@ function GetGDPData(rows, stateName, districtName) {
   } else {
     districts.push(districtName);
   }
+  console.log("districtName: " + districts);
   for (let i = 0; i < districts.length; i++) {
     let dataDict = df
-      .filter({ State: stateName, District: districts[i] })
+      .filter({ State: String(stateName), District: String(districts[i]) })
       .toArray();
 
     const districtObjects = dataDict.map((row, index) => ({
       Year: row[0],
       GDP: parseInt(row[3]),
     }));
-    // console.log(districtObjects);
+    console.log(districtObjects);
     dataObjects.push({ District: districts[i], Data: districtObjects });
   }
   return dataObjects;

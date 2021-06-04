@@ -42,6 +42,8 @@
 }
 .stateCard {
   margin-top: 20px;
+  width: 200px;
+  height: 200px;
 }
 .upperContainer {
   display: flex;
@@ -54,4 +56,16 @@
 
 .rightCard {
   width: 65%;
+}
+
+.regions path:hover {
+  fill: #2596be;
+  /* stroke: #2596be; */
+}
+
+.regions > path {
+  fill: #d0d0d0;
+  /* stroke: rgb(255, 255, 255);
+  stroke-width: 1;
+  stroke-opacity: 5; */
 }

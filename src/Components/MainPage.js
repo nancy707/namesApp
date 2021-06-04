@@ -1,21 +1,26 @@
 import React, { useState } from "react";
+import Axios from "axios";
+import Select from "react-select";
+import { Container, Col, Row } from "react-bootstrap";
+import Papa from "papaparse";
+import DataFrame from "dataframe-js";
+import { GlassMagnifier, SideBySideMagnifier } from "react-image-magnifiers";
+
 import "./components.css";
 import Districts from "./Districts";
 import SampleNames from "./SampleNames";
 import Migration from "./Migration";
 import SyllabicCount from "./SyllabicCount";
 import GDP from "./GDP";
-import Axios from "axios";
-import Select from "react-select";
-import { Container, Col, Row } from "react-bootstrap";
-import Papa from "papaparse";
-import DataFrame from "dataframe-js";
-
-import { GlassMagnifier, SideBySideMagnifier } from "react-image-magnifiers";
-import image from "./image.png";
-import largeImage from "./largeImage.png";
 import MigrationVSSyllabicCount from "./MigrationVSSyllabicCount";
 import GDPVSSyllabicCount from "./GDPVSSyllabicCount";
+
+import SVGElement from "./SVGElement";
+import { SVGMap } from "react-svg-map";
+import "react-svg-map/lib/index.css";
+import image from "./image.png";
+import largeImage from "./largeImage.png";
+
 // const csvFilePath = "http://localhost:3000/data/AllYearsSyllabicCount.csv";
 
 // const csvFilePath = "/data/YearwiseSyllabicCount3.csv";
@@ -82,9 +87,32 @@ function GetDistrictObjects(stateName) {
     value: index,
     label: str,
   }));
+  for (let i = 1; i < districtObjects.length; i++) {
+    console.log(
+      'map["' +
+        districtObjects[i].label +
+        '"] = { value: ' +
+        districtObjects[i].value +
+        ', label: "' +
+        districtObjects[i].label +
+        '"}'
+    );
+    // console.log(districtObjects[i]);
+  }
+  // console.log(districtObjects);
   return districtObjects;
 }
 
+function getStateImage(stateName) {
+  stateName = stateName.replaceAll(" ", "_");
+  console.log("./images/" + stateName + ".jpg");
+  return require("./images/" + stateName + ".jpg");
+  // "https://nancy707.github.io/namesApp/data/images2/" + stateName + ".jpg"
+}
+function getStateLargeImage(stateName) {
+  stateName = stateName.replaceAll(" ", "_");
+  return require("./images/" + stateName + ".jpg");
+}
 function MainPage() {
   const [show, setShowVariable] = useState(false);
   const [stateSelected, setStateSelected] = useState({
@@ -156,6 +184,9 @@ function MainPage() {
       const response = await fetch(
         "https://nancy707.github.io/namesApp/data/YearwiseGDP.csv"
       );
+      // const response = await fetch(
+      //   "http://localhost:3000/namesApp/data/YearwiseGDP.csv"
+      // );
       const reader = response.body.getReader();
       const result = await reader.read(); // raw array
       const decoder = new TextDecoder("utf-8");
@@ -234,6 +265,11 @@ function MainPage() {
 
   return (
     <Container>
+      {/* <div> */}
+      {/* <SVGMap map={require("./svgs/indiaLow.svg")} /> */}
+      {/* <SVGElement /> */}
+      {/* </div> */}
+
       <div className="w3-cell-row heading">
         <h2>Evolution of naming conventions in India</h2>
         <p className="textStyles">
@@ -244,15 +280,22 @@ function MainPage() {
       <hr />
       <div className="w3-cell-row">
         <div class="w3-container w3-cell" style={{ width: "30%" }}>
-          <h5 style={{ marginTop: "8px" }}>
+          <h5 style={{ marginTop: "0px" }}>
             {stateSelected.label.toUpperCase()}
           </h5>
-          <SideBySideMagnifier
-            imageSrc={image}
-            imageAlt="Example"
-            largeImageSrc={largeImage}
-            className="stateCard"
+          <p> {districtSelected.label} </p>
+          <SVGElement
+            state={stateSelected.label}
+            updateDistrict={setDistrictSelected}
           />
+          {/* <SideBySideMagnifier
+            imageSrc={getStateImage(stateSelected.label)}
+            style={{ height: "200px", width: "200px" }}
+            // imageAlt="Example"
+            // largeImageSrc={getStateLargeImage(stateSelected.label)}
+            largeImageSrc={<SVGElement />}
+            className="stateCard"
+          /> */}
         </div>
 
         <div class="w3-container w3-cell" style={{ width: "70%" }}>
@@ -271,7 +314,7 @@ function MainPage() {
         {/* <div class="w3-responsive"> */}
         <table
           className="w3-table-all w3-centered"
-          style={{ marginTop: "25px" }}
+          style={{ marginTop: "0px" }}
         >
           <tr>
             <th colspan="4">Sample names in {yearSelectElement}</th>
