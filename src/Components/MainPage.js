@@ -214,10 +214,10 @@ function MainPage() {
 
   return (
     <Container>
-      {/* <div> */}
-      {/* <SVGMap map={require("./svgs/indiaLow.svg")} /> */}
-      {/* <SVGElement /> */}
-      {/* </div> */}
+      {/* <div>
+        <SVGMap map={require("./svgs/indiaLow.svg")} />
+        <SVGElement />
+      </div> */}
 
       <div className="w3-cell-row heading">
         <h2>Evolution of naming conventions in India</h2>

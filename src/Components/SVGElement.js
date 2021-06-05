@@ -18,6 +18,7 @@ import Uttar_Pradesh from "./svgs/Uttar_Pradesh";
 import Uttarakhand from "./svgs/Uttarakhand";
 
 import Mizoram from "./svgs/Mizoram2";
+
 function SVGElement(props) {
   const stateName = props.state;
   // stateName = stateName.replaceAll(" ", "_");
