@@ -5,12 +5,12 @@ import App from "./App";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Project from "./Components/ProjectDetails";
-import MigrationVSSyllabicCount from "./Components/MigrationVSSyllabicCount";
-import GDP from "./Components/GDP";
-import SyllabicCount from "./Components/SyllabicCount";
-import MainPage from "./Components/MainPage";
+import { BrowserRouter as Router } from "react-router-dom";
+// import Project from "./Components/ProjectDetails";
+// import MigrationVSSyllabicCount from "./Components/MigrationVSSyllabicCount";
+// import GDP from "./Components/GDP";
+// import SyllabicCount from "./Components/SyllabicCount";
+// import MainPage from "./Components/MainPage";
 
 ReactDOM.render(
   <Router>

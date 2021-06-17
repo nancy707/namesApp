@@ -5,6 +5,28 @@ export default function Daman_And_Diu(props) {
   let map = {};
   map["Daman"] = { value: 1, label: "Daman" };
   map["Diu"] = { value: 2, label: "Diu" };
+
+  const districts = Object.keys(map);
+  const changeColor = (district) => {
+    if (district == "All Districts") {
+      districts.forEach((d, i) => {
+        const element = document.getElementsByClassName(d)[0];
+        if (element != undefined) {
+          element.style.fill = "#d0d0d0";
+        }
+      });
+    } else {
+      districts.forEach((d, i) => {
+        if (d == district) {
+          document.getElementsByClassName(d)[0].style.fill = "#2596be";
+        } else {
+          document.getElementsByClassName(d)[0].style.fill = "#d0d0d0";
+        }
+      });
+    }
+  };
+  changeColor(props.district);
+
   return (
     <svg
       id="chart"
@@ -16,6 +38,7 @@ export default function Daman_And_Diu(props) {
     >
       <g class="regions">
         <path
+          className="Daman"
           d="M370.8634121791638,175.24244889447573L372.51575239054,178.79949203191654L368.7327629592346,178.53602169889746L365.4715651736278,183.80499268510584L373.1679919476592,184.46354960414646L373.42888777050575,185.12209220958448L370.1676899849008,187.93171323881825L372.6027176648204,191.57505286387186L372.6027176648204,191.66283878252398L365.2976346250616,192.80403262194704L361.55812783090005,192.76014134448042L360.2536487166599,193.6379548384266L358.8187216909919,193.85740424674123L361.64509310518406,176.99906569020914L365.0802214393552,174.23234802124807Z"
           style={{ cursor: "pointer" }}
           onClick={() => props.updateDistrict(map["Daman"])}
@@ -24,6 +47,7 @@ export default function Daman_And_Diu(props) {
           <title>Daman</title>
         </path>
         <path
+          className="Diu"
           d="M8.131253145444134,119.98848103233286L8.39214896829617,120.12047341886318L10.087971816808931,121.13239565567937L11.522898842476934,122.01230015120427L15.566784096628908,121.1763914964381L19.306290890792297,123.94799877147807L19.349773527930665,123.90400701431054L22.176144942122846,120.78042659505809L22.78490186210729,120.16447075130736L24.219828887771655,121.0444037796201L20.567287367890458,123.94799877147807L22.306592853548864,125.75160503971165L18.6105686965293,127.99496336416223L9.783593356820347,126.01553828837496L4.30478107700219,128.47880289265913L0,126.58738566395914L1.6523402113725751,123.33210827472112L7.305083039758756,121.92431086869055ZM50.91816809260126,116.7324839624639L50.787720181177065,115.8964273610959L51.22254655258985,116.55647399454938Z"
           style={{ cursor: "pointer" }}
           onClick={() => props.updateDistrict(map["Diu"])}

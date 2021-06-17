@@ -1,42 +1,12 @@
-import React, { useState } from "react";
+import React from "react";
 import "./components.css";
 import Districts from "./Districts";
-import SampleNames from "./SampleNames";
-import Axios from "axios";
-import Select from "react-select";
-import { Container, Col, Row } from "react-bootstrap";
-import {
-  LineChart,
-  Line,
-  CartesianGrid,
-  XAxis,
-  YAxis,
-  Tooltip,
-  Legend,
-  Label,
-} from "recharts";
-import Papa from "papaparse";
+import { LineChart, Line, CartesianGrid, XAxis, YAxis, Label } from "recharts";
 import DataFrame from "dataframe-js";
 // import csvData from "./YearwiseSyllabicCount3.csv";
 
 function GetSyllabicData(rows, stateName, districtName) {
-  const columns = [
-    "Year",
-    "State",
-    "District",
-    "People",
-    "AvgSyllabicCount",
-    // "Name1",
-    // "Name2",
-    // "Name3",
-    // "Name4",
-    // "Name5",
-    // "Name6",
-    // "Name7",
-    // "Name8",
-    // "Name9",
-    // "Name10",
-  ];
+  const columns = ["Year", "State", "District", "People", "AvgSyllabicCount"];
   // console.log("Syllabic rows: ");
   const df = new DataFrame(rows, columns);
   // console.log(df);

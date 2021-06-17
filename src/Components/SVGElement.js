@@ -12,12 +12,11 @@ import Himachal_Pradesh from "./svgs/Himachal_Pradesh";
 import Madhya_Pradesh from "./svgs/Madhya_Pradesh";
 import Manipur from "./svgs/Manipur";
 import Meghalaya from "./svgs/Meghalaya";
+import Mizoram from "./svgs/Mizoram";
 import Nagaland from "./svgs/Nagaland";
 import Puducherry from "./svgs/Puducherry";
 import Uttar_Pradesh from "./svgs/Uttar_Pradesh";
 import Uttarakhand from "./svgs/Uttarakhand";
-
-import Mizoram from "./svgs/Mizoram2";
 
 function SVGElement(props) {
   const stateName = props.state;
@@ -28,40 +27,120 @@ function SVGElement(props) {
   switch (stateName) {
     case "Andaman And Nicobar Islands":
       return (
-        <Andaman_And_Nicobar_Islands updateDistrict={setDistrictSelected} />
+        <Andaman_And_Nicobar_Islands
+          updateDistrict={setDistrictSelected}
+          district={props.district}
+        />
       );
     case "Arunachal Pradesh":
-      return <Arunachal_Pradesh updateDistrict={setDistrictSelected} />;
+      return (
+        <Arunachal_Pradesh
+          updateDistrict={setDistrictSelected}
+          district={props.district}
+        />
+      );
     case "Andhra Pradesh":
-      return <Andhra_Pradesh updateDistrict={setDistrictSelected} />;
+      return (
+        <Andhra_Pradesh
+          updateDistrict={setDistrictSelected}
+          district={props.district}
+        />
+      );
     case "Chandigarh":
-      return <Chandigarh updateDistrict={setDistrictSelected} />;
+      return (
+        <Chandigarh
+          updateDistrict={setDistrictSelected}
+          district={props.district}
+        />
+      );
     case "Daman And Diu":
-      return <Daman_And_Diu updateDistrict={setDistrictSelected} />;
+      return (
+        <Daman_And_Diu
+          updateDistrict={setDistrictSelected}
+          district={props.district}
+        />
+      );
     case "Dadra And Nagar Haveli":
-      return <Dadra_And_Nagar_Haveli updateDistrict={setDistrictSelected} />;
+      return (
+        <Dadra_And_Nagar_Haveli
+          updateDistrict={setDistrictSelected}
+          district={props.district}
+        />
+      );
     case "Goa":
-      return <Goa updateDistrict={setDistrictSelected} />;
+      return (
+        <Goa updateDistrict={setDistrictSelected} district={props.district} />
+      );
     case "Haryana":
-      return <Haryana updateDistrict={setDistrictSelected} />;
+      return (
+        <Haryana
+          updateDistrict={setDistrictSelected}
+          district={props.district}
+        />
+      );
     case "Himachal Pradesh":
-      return <Himachal_Pradesh updateDistrict={setDistrictSelected} />;
+      return (
+        <Himachal_Pradesh
+          updateDistrict={setDistrictSelected}
+          district={props.district}
+        />
+      );
     case "Madhya Pradesh":
-      return <Madhya_Pradesh updateDistrict={setDistrictSelected} />;
+      return (
+        <Madhya_Pradesh
+          updateDistrict={setDistrictSelected}
+          district={props.district}
+        />
+      );
     case "Manipur":
-      return <Manipur updateDistrict={setDistrictSelected} />;
+      return (
+        <Manipur
+          updateDistrict={setDistrictSelected}
+          district={props.district}
+        />
+      );
     case "Meghalaya":
-      return <Meghalaya updateDistrict={setDistrictSelected} />;
+      return (
+        <Meghalaya
+          updateDistrict={setDistrictSelected}
+          district={props.district}
+        />
+      );
     case "Mizoram":
-      return <Mizoram updateDistrict={setDistrictSelected} />;
+      return (
+        <Mizoram
+          updateDistrict={setDistrictSelected}
+          district={props.district}
+        />
+      );
     case "Nagaland":
-      return <Nagaland updateDistrict={setDistrictSelected} />;
+      return (
+        <Nagaland
+          updateDistrict={setDistrictSelected}
+          district={props.district}
+        />
+      );
     case "Puducherry":
-      return <Puducherry updateDistrict={setDistrictSelected} />;
+      return (
+        <Puducherry
+          updateDistrict={setDistrictSelected}
+          district={props.district}
+        />
+      );
     case "Uttar Pradesh":
-      return <Uttar_Pradesh updateDistrict={setDistrictSelected} />;
+      return (
+        <Uttar_Pradesh
+          updateDistrict={setDistrictSelected}
+          district={props.district}
+        />
+      );
     case "Uttarakhand":
-      return <Uttarakhand updateDistrict={setDistrictSelected} />;
+      return (
+        <Uttarakhand
+          updateDistrict={setDistrictSelected}
+          district={props.district}
+        />
+      );
   }
   return <></>;
 }

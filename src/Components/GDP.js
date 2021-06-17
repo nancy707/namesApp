@@ -1,16 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import "./components.css";
 import Districts from "./Districts";
-import {
-  LineChart,
-  Line,
-  CartesianGrid,
-  XAxis,
-  YAxis,
-  Tooltip,
-  Legend,
-  Label,
-} from "recharts";
+import { LineChart, Line, CartesianGrid, XAxis, YAxis, Label } from "recharts";
 import DataFrame from "dataframe-js";
 
 function GetGDPData(rows, stateName, districtName) {

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import Axios from "axios";
+// import Axios from "axios";
 import Select from "react-select";
-import { Container, Col, Row } from "react-bootstrap";
+import { Container } from "react-bootstrap";
 import Papa from "papaparse";
 import DataFrame from "dataframe-js";
 import "./components.css";
@@ -62,27 +62,40 @@ function GetDistrictObjects(stateName) {
     value: index,
     label: str,
   }));
+  // districtObjects.forEach((d, i) =>
+  //   console.log(
+  //     'map["' +
+  //       d.label +
+  //       '"] = {value: ' +
+  //       d.value +
+  //       ', label: "' +
+  //       d.label +
+  //       '"}'
+  //   )
+  // );
   return districtObjects;
 }
 
 function MainPage() {
-  const [show, setShowVariable] = useState(false);
+  // const [show, setShowVariable] = useState(false);
   const [stateSelected, setStateSelected] = useState({
     value: 2,
     label: "Andhra Pradesh",
   });
-  const changeStateSelectOptionHandler = (event) => {
-    setStateSelected(event);
-    setDistrictSelected({ value: 0, label: "All Districts" });
-  };
-
   const [districtSelected, setDistrictSelected] = useState({
     value: 0,
     label: "All Districts",
   });
+  const changeStateSelectOptionHandler = (event) => {
+    setStateSelected(event);
+    // setDistrictSelected({ value: 0, label: "All Districts" });
+    // const obj = { value: 0, label: "All Districts" };
+    // changeDistrictSelectOptionHandler(obj);
+    // console.log(districtSelected.label);
+  };
   const changeDistrictSelectOptionHandler = (event) => {
     setDistrictSelected(event);
-    setShowVariable(true);
+    // setShowVariable(true);
   };
 
   const [yearSelected, setYearSelected] = useState({
@@ -174,8 +187,11 @@ function MainPage() {
     <Select
       className="select-search mt-2 col-md-3 col-offset-2"
       classNamePrefix="select"
-      placeholder="Andhra Pradesh"
-      onChange={changeStateSelectOptionHandler}
+      placeholder={stateSelected.label}
+      onChange={(e) => {
+        changeStateSelectOptionHandler(e);
+        changeDistrictSelectOptionHandler({ value: 0, label: "All Districts" });
+      }}
       selectedValue={stateSelected}
       isClearable="true"
       isSearchable="true"
@@ -188,7 +204,7 @@ function MainPage() {
     <Select
       className="select-search mt-2 col-md-3 col-offset-2"
       classNamePrefix="select"
-      placeholder="All Districts"
+      placeholder={districtSelected.label}
       onChange={changeDistrictSelectOptionHandler}
       selectedValue={districtSelected}
       isClearable="true"
@@ -236,6 +252,7 @@ function MainPage() {
           <SVGElement
             state={stateSelected.label}
             updateDistrict={setDistrictSelected}
+            district={districtSelected.label}
           />
           {/* <SideBySideMagnifier
             imageSrc={getStateImage(stateSelected.label)}
@@ -266,7 +283,7 @@ function MainPage() {
           style={{ marginTop: "0px" }}
         >
           <tr>
-            <th colspan="4">Sample names in {yearSelectElement}</th>
+            <th colSpan="4">Sample names in {yearSelectElement}</th>
           </tr>
           <SampleNames
             csvData1={sampleNameRows1}

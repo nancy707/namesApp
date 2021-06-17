@@ -1,9 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import "./components.css";
 import Districts from "./Districts";
-import Select from "react-select";
-import { Container, Row, Col } from "react-bootstrap";
-
 import DataFrame from "dataframe-js";
 
 function GetSampleNamesData(rows1, rows2, stateName, districtName, year) {

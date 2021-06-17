@@ -1,21 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import "./App.css";
-import Axios from "axios";
-import { LinkContainer } from "react-router-bootstrap";
-import {
-  Container,
-  Navbar,
-  Nav,
-  Button,
-  Form,
-  FormControl,
-} from "react-bootstrap";
+// import Axios from "axios";
+// import { LinkContainer } from "react-router-bootstrap";
+import { Container } from "react-bootstrap";
 import MainPage from "./Components/MainPage";
 
 function App() {
-  const [name, setName] = useState("");
-  const [roll, setRoll] = useState("");
-  const [studentList, setStudentList] = useState([]);
+  // const [name, setName] = useState("");
+  // const [roll, setRoll] = useState("");
+  // const [studentList, setStudentList] = useState([]);
 
   // to retrieve the data from database through backend
   // useEffect(() => {
@@ -35,18 +28,18 @@ function App() {
   //   });
   // }, []);
 
-  const submitFunc = () => {
-    Axios.post("http://localhost:3001/insert", {
-      studentName: name,
-      rollNo: roll,
-    }).then(() => {
-      console.log("Successfully inserted.");
-    });
-  };
+  // const submitFunc = () => {
+  //   Axios.post("http://localhost:3001/insert", {
+  //     studentName: name,
+  //     rollNo: roll,
+  //   }).then(() => {
+  //     console.log("Successfully inserted.");
+  //   });
+  // };
 
-  const studentListMap = studentList.map((val) => {
-    return <h1>Student Name: {val.Tables_in_namesdb}</h1>;
-  });
+  // const studentListMap = studentList.map((val) => {
+  //   return <h1>Student Name: {val.Tables_in_namesdb}</h1>;
+  // });
 
   return (
     <div className="App">
